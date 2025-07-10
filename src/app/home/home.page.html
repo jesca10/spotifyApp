@@ -1,20 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Inicio
     </ion-title>
+
+    <ion-button slot="end" fill="clear" (click)="cambiarTema()">
+      <ion-icon [name]="iconTema" class="icon-tema"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content [fullscreen]="true">
+  <swiper-container pagination="true" loop="true" slides-per-view="1" class="swiper-container"
+    [style.backgroundColor]="temaFondo">
+    <swiper-slide *ngFor="let genre of genres">
+      <div class="slide-content">
+        <h2 [style.color]="temaTexto">{{ genre.title }}</h2>
+        <img [src]="genre.image" [alt]="genre.title">
+        <p [style.color]="temaTexto">{{ genre.description }}</p>
+      </div>
+    </swiper-slide>
+  </swiper-container>
 </ion-content>
