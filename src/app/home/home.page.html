@@ -5,7 +5,11 @@
     </ion-title>
 
     <ion-button slot="end" fill="clear" (click)="cambiarTema()">
-      <ion-icon [name]="iconTema" class="icon-tema"></ion-icon>
+      <ion-icon [name]="tema.icon" class="icon-tema"></ion-icon>
+    </ion-button>
+
+    <ion-button slot="end" fill="clear" (click)="navigateTo()">
+      <ion-icon name="arrow-forward" class="icon-tema"></ion-icon>
     </ion-button>
   </ion-toolbar>
 </ion-header>
@@ -13,12 +17,12 @@
 
 <ion-content [fullscreen]="true">
   <swiper-container pagination="true" loop="true" slides-per-view="1" class="swiper-container"
-    [style.backgroundColor]="temaFondo">
+    [style.backgroundColor]="tema.bg">
     <swiper-slide *ngFor="let genre of genres">
       <div class="slide-content">
-        <h2 [style.color]="temaTexto">{{ genre.title }}</h2>
+        <h2 [style.color]="tema.texto">{{ genre.title }}</h2>
         <img [src]="genre.image" [alt]="genre.title">
-        <p [style.color]="temaTexto">{{ genre.description }}</p>
+        <p [style.color]="tema.texto">{{ genre.description }}</p>
       </div>
     </swiper-slide>
   </swiper-container>

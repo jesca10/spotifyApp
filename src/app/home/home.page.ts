@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
-import { moonSharp, sunnySharp } from 'ionicons/icons';
+import { moonSharp, sunnySharp, arrowForward } from 'ionicons/icons';
+import { StorageService } from '../services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,9 +18,12 @@ export class HomePage {
   //* [Tarea]: Agregar información de minimo 3 slides para mostrar en la vista. ✅
   //* [Tarea]: Cambiar mediante el click de un boton el tema (color) de los slides. ✅
 
-  temaFondo: string = 'var(--tema-oscuro-fondo)';
-  temaTexto: string = 'var(--tema-oscuro-texto)';
-  iconTema: string = 'sunny-sharp';
+  tema: any = {
+    modo: 'oscuro',
+    bg: 'var(--tema-oscuro-fondo)',
+    texto: 'var(--tema-oscuro-texto)',
+    icon: 'sunny-sharp'
+  }
   genres = [
     {
       title: '🎧 Hip-Hop',
@@ -37,15 +42,41 @@ export class HomePage {
     }
   ]
 
-  constructor() {
-    addIcons({ moonSharp, sunnySharp });
-
+  constructor(private storageService: StorageService, private router: Router) {
+    addIcons({ moonSharp, sunnySharp, arrowForward });
   }
 
-  cambiarTema() {
-    const esOscuro = this.temaFondo === 'var(--tema-oscuro-fondo)';
-    this.temaFondo = esOscuro ? 'var(--tema-claro-fondo)' : 'var(--tema-oscuro-fondo)';
-    this.temaTexto = esOscuro ? 'var(--tema-claro-texto)' : 'var(--tema-oscuro-texto)';
-    this.iconTema = esOscuro ? 'moon-sharp' : 'sunny-sharp';
+  async ngOnInit() {
+    await this.loadStorageData();
+  }
+
+  async cambiarTema() {
+    const temaClaro = {
+      modo: 'claro',
+      bg: 'var(--tema-claro-fondo)',
+      texto: 'var(--tema-claro-texto)',
+      icon: 'moon-sharp'
+    };
+
+    const temaOscuro = {
+      modo: 'oscuro',
+      bg: 'var(--tema-oscuro-fondo)',
+      texto: 'var(--tema-oscuro-texto)',
+      icon: 'sunny-sharp'
+    };
+
+    this.tema = this.tema.modo === 'oscuro' ? temaClaro : temaOscuro;
+
+    await this.storageService.set('theme', this.tema);
+  }
+
+  async loadStorageData() {
+    const theme = await this.storageService.get("theme");
+    if (theme) this.tema = theme;
+  }
+
+  //* [Tarea]: Agregar función para navegar a la página intro. ✅
+  navigateTo() {
+    this.router.navigateByUrl('/intro');
   }
 }
