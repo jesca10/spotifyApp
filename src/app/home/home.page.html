@@ -8,15 +8,15 @@
       <ion-icon [name]="tema.icon" class="icon-tema"></ion-icon>
     </ion-button>
 
-    <ion-button slot="end" fill="clear" (click)="navigateTo()">
+    <!-- <ion-button slot="end" fill="clear" (click)="navigateTo()">
       <ion-icon name="arrow-forward" class="icon-tema"></ion-icon>
-    </ion-button>
+    </ion-button> -->
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content [fullscreen]="true">
-  <swiper-container pagination="true" loop="true" slides-per-view="1" class="swiper-container"
+<ion-content [fullscreen]="true" [scrollY]="false">
+  <swiper-container effect="coverflow" pagination="true" loop="true" slides-per-view="1" class="swiper-container"
     [style.backgroundColor]="tema.bg">
     <swiper-slide *ngFor="let genre of genres">
       <div class="slide-content">

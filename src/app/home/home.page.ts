@@ -48,6 +48,7 @@ export class HomePage {
 
   async ngOnInit() {
     await this.loadStorageData();
+    this.simularCargarDatos();
   }
 
   async cambiarTema() {
@@ -73,6 +74,20 @@ export class HomePage {
   async loadStorageData() {
     const theme = await this.storageService.get("theme");
     if (theme) this.tema = theme;
+  }
+
+  async simularCargarDatos() {
+    const data = await this.obtenerDatosSimulados();
+    console.log('Datos simulados:', data);
+  }
+
+  async obtenerDatosSimulados() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(['🎧 Hip-Hop', '🎸 Rock', '🎤 Rap']);
+        // reject('Hubo un error al cargar los datos simulados');
+      }, 6000);
+    });
   }
 
   //* [Tarea]: Agregar función para navegar a la página intro. ✅
