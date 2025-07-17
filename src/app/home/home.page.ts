@@ -20,8 +20,8 @@ export class HomePage {
 
   tema: any = {
     modo: 'oscuro',
-    bg: 'var(--tema-oscuro-fondo)',
-    texto: 'var(--tema-oscuro-texto)',
+    bg: 'var(--eco-oscuro)',
+    texto: 'var(--eco-oscuro-texto-principal)',
     icon: 'sunny-sharp'
   }
   genres = [
@@ -54,15 +54,15 @@ export class HomePage {
   async cambiarTema() {
     const temaClaro = {
       modo: 'claro',
-      bg: 'var(--tema-claro-fondo)',
-      texto: 'var(--tema-claro-texto)',
+      bg: 'var(--eco-claro)',
+      texto: 'var(--eco-claro-texto-principal)',
       icon: 'moon-sharp'
     };
 
     const temaOscuro = {
       modo: 'oscuro',
-      bg: 'var(--tema-oscuro-fondo)',
-      texto: 'var(--tema-oscuro-texto)',
+      bg: 'var(--eco-oscuro)',
+      texto: 'var(--eco-oscuro-texto-principal)',
       icon: 'sunny-sharp'
     };
 

@@ -25,7 +25,7 @@ export class IntroPage {
   slides = [
     {
       image: 'assets/imgs/slide1.png',
-      title: 'Bienvenido a Spotify',
+      title: 'Bienvenido a Eco',
       description: 'Escucha tu música favorita'
     },
     {
