@@ -3,7 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { moonSharp, sunnySharp, arrowForward } from 'ionicons/icons';
-import { StorageService } from '../services/storage.service';
+import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
 
 @Component({
