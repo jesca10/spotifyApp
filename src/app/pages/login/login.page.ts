@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
-import { addIcons } from 'ionicons';
-import { personCircleSharp, mailSharp, lockClosedSharp, logInSharp, eyeSharp, eyeOffSharp } from 'ionicons/icons';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -47,8 +45,6 @@ export class LoginPage {
         ])
       )
     });
-
-    addIcons({ personCircleSharp, mailSharp, lockClosedSharp, logInSharp, eyeSharp, eyeOffSharp });
   }
 
   togglePassword() {
@@ -59,7 +55,8 @@ export class LoginPage {
     console.log(credentials)
     this.authService.loginUser(credentials).then(res => {
       this.errorMessage = '';
-      this.navCtrl.navigateForward('/home');
+      this.navCtrl.navigateForward('/menu/home');
+      this.loginForm.reset();
     }).catch(err => {
       this.errorMessage = err;
     });

@@ -1,0 +1,32 @@
+.menu {
+    --background: var(--eco-oscuro);
+    color: var(--eco-oscuro-texto-principal);
+}
+
+.menu-header {
+    --background: var(--eco-noche);
+    color: var(--eco-oscuro-texto-principal);
+    border-bottom: 1px solid var(--eco-primario);
+}
+
+.menu-content {
+    --background: var(--eco-oscuro);
+}
+
+.menu-item {
+    --background: var(--eco-oscuro);
+    color: var(--eco-oscuro-texto-principal);
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.logout-button {
+    color: var(--eco-danger);
+    font-weight: bold;
+    font-size: 0.95rem;
+
+    & ion-icon {
+        color: var(--eco-danger);
+        margin-right: 6px;
+    }
+}

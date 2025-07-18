@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { addIcons } from 'ionicons';
-import { moonSharp, sunnySharp, arrowForward } from 'ionicons/icons';
 import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
 
@@ -42,9 +40,7 @@ export class HomePage {
     }
   ]
 
-  constructor(private storageService: StorageService, private router: Router) {
-    addIcons({ moonSharp, sunnySharp, arrowForward });
-  }
+  constructor(private storageService: StorageService, private router: Router) { }
 
   async ngOnInit() {
     await this.loadStorageData();
