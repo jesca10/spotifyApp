@@ -1,23 +1,26 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule, NavController } from '@ionic/angular';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
+  standalone: true,
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
 })
-export class LoginPage {
+export class RegisterPage {
 
-  // * [Tarea]: Crear un nuevo guard para validar si estoy logeado cuando entre al home, si no redireccionar al login ✅
   showPassword: boolean = false;
-  errorMessage: string = '';
-  loginForm: FormGroup;
-  // * [Tarea]: Añadir los mensajes de validación para password ✅
+  registerForm: FormGroup;
   validationMessages: any = {
+    name: [
+      { type: 'required', message: 'El nombre es obligatorio.' }
+    ],
+    lastName: [
+      { type: 'required', message: 'El apellido es obligatorio.' }
+    ],
     email: [
       { type: 'required', message: 'El correo electrónico es obligatorio.' },
       { type: 'email', message: 'Correo electrónico inválido.' }
@@ -29,8 +32,18 @@ export class LoginPage {
     ]
   }
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService, private navCtrl: NavController) {
-    this.loginForm = this.formBuilder.group({
+  constructor(private formBuilder: FormBuilder, private navCtrl: NavController) {
+    this.registerForm = this.formBuilder.group({
+      name: new FormControl('',
+        Validators.compose([
+          Validators.required
+        ])
+      ),
+      lastName: new FormControl('',
+        Validators.compose([
+          Validators.required
+        ])
+      ),
       email: new FormControl('',
         Validators.compose([
           Validators.required,
@@ -51,18 +64,11 @@ export class LoginPage {
     this.showPassword = !this.showPassword;
   }
 
-  navRegister() {
-    this.navCtrl.navigateForward('/register');
+  navLogin() {
+    this.navCtrl.navigateBack('/login');
   }
 
-  loginUser(credentials: any) {
-    console.log(credentials)
-    this.authService.loginUser(credentials).then(res => {
-      this.errorMessage = '';
-      this.navCtrl.navigateForward('/menu/home');
-      this.loginForm.reset();
-    }).catch(err => {
-      this.errorMessage = err;
-    });
+  registerUser(formData: any) {
+    console.log(formData);
   }
 }

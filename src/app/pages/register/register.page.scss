@@ -1,15 +1,14 @@
-//* [Tarea]: Darle estilos generales al login ✅
 .container {
     --background: var(--eco-oscuro);
 
-    .login-content {
+    .register-content {
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         padding: 20px;
 
-        .login-logo {
+        .register-logo {
             text-align: center;
             margin-bottom: 30px;
 
@@ -64,36 +63,28 @@
                 cursor: pointer;
             }
 
-            .error-message {
-                color: var(--eco-danger);
-                font-size: 12px;
-                margin: 2px 12px 12px;
-            }
-
             ion-button {
                 margin-top: 25px;
-                background: var(--eco-success);
+                background-color: var(--eco-success);
                 color: var(--eco-oscuro);
                 font-weight: 600;
                 border-radius: 30px;
                 height: 48px;
-                box-shadow: 0 4px 12px #00BFA680;
+                box-shadow: 0 4px 12px rgba(0, 191, 166, 0.3);
             }
 
-            .redirect-text {
+            .register-redirect-text {
                 text-align: center;
-                margin-top: 12px;
+                margin-top: 16px;
                 font-size: 14px;
                 color: var(--eco-oscuro-texto-secundario);
 
                 a {
                     color: var(--eco-neon);
                     font-weight: 500;
-                    text-decoration: none;
                     margin-left: 4px;
-                    text-shadow:
-                        0 0 6px #00BFA666,
-                        0 0 12px #00BFA64D;
+                    text-decoration: none;
+                    text-shadow: 0 0 6px var(--eco-neon);
                 }
             }
         }

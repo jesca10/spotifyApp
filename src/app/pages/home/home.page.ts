@@ -3,6 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
+import { MusicService } from 'src/app/services/music.service';
 
 @Component({
   selector: 'app-home',
@@ -39,12 +40,28 @@ export class HomePage {
       description: 'Más que rimas rápidas: el rap es una forma poderosa de contar historias, compartir ideas y conectar con la realidad a través de la música.'
     }
   ]
+  tracks: any[] = [];
+  albums: any[] = [];
 
-  constructor(private storageService: StorageService, private router: Router) { }
+  constructor(private storageService: StorageService, private router: Router, private musicService: MusicService) { }
 
   async ngOnInit() {
-    await this.loadStorageData();
     this.simularCargarDatos();
+    this.loadTracks();
+    this.loadAlbums();
+    await this.loadStorageData();
+  }
+
+  async loadTracks() {
+    this.musicService.getTracks().then(tracks => {
+      this.tracks = tracks;
+    });
+  }
+
+  async loadAlbums() {
+    this.musicService.getAlbums().then(albums => {
+      this.albums = albums;
+    });
   }
 
   async cambiarTema() {
